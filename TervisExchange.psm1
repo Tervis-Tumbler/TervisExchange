@@ -27,3 +27,16 @@
         Import-Module (Import-PSSession $Session -DisableNameChecking -AllowClobber) -DisableNameChecking -Global -Prefix "Exchange"
     }
 }
+
+function Enable-TervisExchangeMailbox {
+    param (
+        $Identity
+    )
+    Import-TervisExchangePSSession
+    $MailboxDatabase = Get-ExchangeMailboxDatabase | 
+    Where Name -NotLike "Temp*" | 
+    Select -Index 0 | 
+    Select -ExpandProperty Name
+
+    Enable-ExchangeMailbox -Identity $Identity -Database $MailboxDatabase
+}
