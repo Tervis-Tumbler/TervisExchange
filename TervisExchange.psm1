@@ -30,7 +30,7 @@
 
 function Enable-TervisExchangeMailbox {
     param (
-        $Identity
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]$UserPrincipalName
     )
     Import-TervisExchangePSSession
     $MailboxDatabase = Get-ExchangeMailboxDatabase | 
