@@ -32,11 +32,14 @@ function Enable-TervisExchangeMailbox {
     param (
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]$UserPrincipalName
     )
-    Import-TervisExchangePSSession
-    $MailboxDatabase = Get-ExchangeMailboxDatabase | 
-    Where Name -NotLike "Temp*" | 
-    Select -Index 0 | 
-    Select -ExpandProperty Name
-
-    Enable-ExchangeMailbox -Identity $UserPrincipalName -Database $MailboxDatabase
+    begin {
+        Import-TervisExchangePSSession
+        $MailboxDatabase = Get-ExchangeMailboxDatabase | 
+        Where Name -NotLike "Temp*" | 
+        Select -Index 0 | 
+        Select -ExpandProperty Name
+    }
+    process {
+        Enable-ExchangeMailbox -Identity $UserPrincipalName -Database $MailboxDatabase
+    }
 }
