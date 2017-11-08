@@ -38,5 +38,5 @@ function Enable-TervisExchangeMailbox {
     Select -Index 0 | 
     Select -ExpandProperty Name
 
-    Enable-ExchangeMailbox -Identity $Identity -Database $MailboxDatabase
+    Enable-ExchangeMailbox -Identity $UserPrincipalName -Database $MailboxDatabase
 }
