@@ -43,3 +43,10 @@ function Enable-TervisExchangeMailbox {
         Enable-ExchangeMailbox -Identity $UserPrincipalName -Database $MailboxDatabase
     }
 }
+
+function Invoke-ExchangeApplicationProvision {
+    $ApplicationName = "Exchange"
+    $EnvironmentName = "Infrastructure"
+    Invoke-ApplicationProvision -ApplicationName $ApplicationName -EnvironmentName $EnvironmentName
+    $Nodes = Get-TervisApplicationNode -ApplicationName $ApplicationName -EnvironmentName $EnvironmentName
+}
