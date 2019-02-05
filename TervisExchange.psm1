@@ -3,7 +3,7 @@
     param ()
 
     $Sessions = Get-PsSession |
-    Where ComputerName -eq "exchange2016.tervis.prv"
+    Where ComputerName -eq "exchange.tervis.prv"
     
     $Sessions |
     Where State -eq "Broken" |
@@ -19,7 +19,7 @@
             Remove-Module -Name $FunctionInfo.ModuleName            
         }
         
-        $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://exchange2016.tervis.prv/PowerShell/       
+        $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://exchange.tervis.prv/PowerShell/       
     }
 
     $FunctionInfo = Get-Command Get-ExchangeMailbox -ErrorAction SilentlyContinue
